@@ -17,6 +17,7 @@ const Gallery = ({ images }: GalleryProps) => {
   const { isMobile } = useWindowSize();
   return (
     <Swiper
+      initialSlide={0}
       modules={[Mousewheel, Keyboard]}
       spaceBetween={16}
       slidesPerView={'auto'}
@@ -26,7 +27,6 @@ const Gallery = ({ images }: GalleryProps) => {
         forceToAxis: true,
       }}
       key={JSON.stringify(images)}
-      nested={true}
       keyboard={true}
       style={{
         height: '100%',

@@ -25,14 +25,14 @@ const Memory = ({ memory }: MemoryProps) => {
   } = memory;
   return (
     <div
-      className="py-16 px-4 md:px-16 flex flex-col items-center gap-4 md:gap-16"
+      className="py-8 md:py-16 px-4 md:px-16 flex flex-col items-center gap-4 md:gap-16"
       style={{
         height: '100dvh',
         backgroundColor: backgroundColor,
         color: textColor,
       }}
     >
-      <div className="shrink-0 flex flex-col gap-4">
+      <div className="shrink-0 flex flex-col gap-4  w-full max-w-[1400px]">
         <div className="flex items-center justify-start">
           <div
             className="flex items-center rounded-lg h-10 px-2 gap-1.5"
