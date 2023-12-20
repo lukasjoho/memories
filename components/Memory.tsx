@@ -58,6 +58,7 @@ const Memory = ({ memory }: MemoryProps) => {
                   border: `2px solid ${backgroundColor}`,
                   marginLeft: index === 0 ? 0 : -10,
                 }}
+                key={person.id}
               >
                 <OptimizedImage src={person.image} style={{}} />
               </div>

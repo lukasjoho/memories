@@ -10,7 +10,7 @@ const People = ({ users }: PeopleProps) => {
   return (
     <div>
       {users.map((user) => (
-        <div className="w-8 h-8 ">
+        <div className="w-8 h-8 " key={user.id}>
           <OptimizedImage src={user.image} />
         </div>
       ))}

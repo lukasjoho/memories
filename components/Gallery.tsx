@@ -33,7 +33,7 @@ const Gallery = ({ images }: GalleryProps) => {
       }}
     >
       {images.map((image) => (
-        <SwiperSlide style={{ width: "auto" }}>
+        <SwiperSlide style={{ width: "auto" }} key={JSON.stringify(image)}>
           {({ isActive }) => (
             <div
               className={cn(

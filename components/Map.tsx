@@ -63,7 +63,7 @@ const Map = ({ memories }: MapProps) => {
           id="map"
         >
           {memories?.map((memory, idx: number) => (
-            <div>M</div>
+            <div key={idx}>M</div>
             // <MarkerF key={memory.id} position={memory.location.coordinates} />
             // <OverlayView
             //   mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
