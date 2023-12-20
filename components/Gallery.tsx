@@ -1,48 +1,62 @@
-"use client";
+'use client';
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import { Keyboard, Mousewheel } from "swiper/modules";
-import OptimizedImage from "./OptimizedImage";
-import { cn } from "@/lib/utils";
+import { useWindowSize } from '@/lib/hooks/useWindowSize';
+import { cn } from '@/lib/utils';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Keyboard, Mousewheel } from 'swiper/modules';
 
 interface GalleryProps {
   images: string[];
 }
 
 const Gallery = ({ images }: GalleryProps) => {
+  const { isMobile } = useWindowSize();
   return (
     <Swiper
       modules={[Mousewheel, Keyboard]}
-      spaceBetween={0}
-      slidesPerView={"auto"}
-      onSlideChange={() => console.log("slide change")}
+      spaceBetween={16}
+      slidesPerView={'auto'}
+      onSlideChange={() => console.log('slide change')}
       onSwiper={(swiper) => console.log(swiper)}
       mousewheel={{
         forceToAxis: true,
       }}
-      centeredSlides={true}
       key={JSON.stringify(images)}
       nested={true}
       keyboard={true}
       style={{
-        height: "100%",
+        height: '100%',
       }}
+      centeredSlides={true}
     >
       {images.map((image) => (
-        <SwiperSlide style={{ width: "auto" }} key={JSON.stringify(image)}>
+        <SwiperSlide
+          style={{ width: isMobile ? '100%' : 'auto' }}
+          key={JSON.stringify(image)}
+        >
           {({ isActive }) => (
-            <div
+            // <div
+            //   className={cn(
+            //     'h-full opacity-30 scale-90 transition duration-300 rounded-3xl overflow-hidden w-auto',
+            //     isActive && 'opacity-100 scale-100'
+            //   )}
+            // >
+            <img
+              src={image}
+              alt=""
               className={cn(
-                "h-full opacity-30 scale-90 transition duration-300 rounded-3xl overflow-hidden",
-                isActive && "opacity-100 scale-100"
+                'h-full w-full object-contain opacity-30 scale-90 transition duration-300 rounded-3xl overflow-hidden',
+                isActive && 'opacity-100 scale-100'
               )}
-            >
-              <img src={image} alt="" className="h-full w-auto" />
-            </div>
+              style={{
+                objectFit: 'contain',
+              }}
+            />
+            // </div>
           )}
         </SwiperSlide>
       ))}

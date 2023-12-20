@@ -1,7 +1,7 @@
 import { formatISOtoDate } from '@/lib/utils';
 import { Prisma } from '@prisma/client';
 import Gallery from './Gallery';
-import OptimizedImage from './OptimizedImage';
+import People from './People';
 
 interface MemoryProps {
   memory: Prisma.MemoryGetPayload<{
@@ -25,7 +25,7 @@ const Memory = ({ memory }: MemoryProps) => {
   } = memory;
   return (
     <div
-      className="py-16 px-16 flex flex-col items-center gap-16"
+      className="py-16 px-4 md:px-16 flex flex-col items-center gap-4 md:gap-16"
       style={{
         height: '100dvh',
         backgroundColor: backgroundColor,
@@ -47,28 +47,26 @@ const Memory = ({ memory }: MemoryProps) => {
             </span>
           </div>
 
-          <div className="flex ml-8">
-            {people.map((person, index) => (
-              <div
-                className="w-12 h-12 rounded-full overflow-hidden"
-                style={{
-                  border: `2px solid ${backgroundColor}`,
-                  marginLeft: index === 0 ? 0 : -10,
-                }}
-                key={person.id}
-              >
-                <OptimizedImage src={person.image} style={{}} />
-              </div>
-            ))}
-          </div>
+          <People
+            className="hidden md:flex ml-8"
+            people={people}
+            backgroundColor={backgroundColor}
+          />
           <div className="ml-auto text-lg font-medium uppercase tracking-wider">
             {formatISOtoDate(date.toString())}
           </div>
         </div>
         <div>
-          <h2 className="text-6xl font-bold">{title}</h2>
-          <p className="text-6xl font-medium opacity-60">{description}</p>
+          <h2 className="text-4xl md:text-6xl font-bold">{title}</h2>
+          <p className="text-4xl md:text-6xl font-medium opacity-60">
+            {description}
+          </p>
         </div>
+        <People
+          className="md:hidden"
+          people={people}
+          backgroundColor={backgroundColor}
+        />
       </div>
       <div className="overflow-hidden grow w-full">
         <Gallery key={JSON.stringify(images)} images={images} />
