@@ -1,10 +1,7 @@
-import { MapPin } from "lucide-react";
-import Image from "next/image";
-import React from "react";
-import OptimizedImage from "./OptimizedImage";
-import { Prisma } from "@prisma/client";
-import Gallery from "./Gallery";
-import { formatISOtoDate } from "@/lib/utils";
+import { formatISOtoDate } from '@/lib/utils';
+import { Prisma } from '@prisma/client';
+import Gallery from './Gallery';
+import OptimizedImage from './OptimizedImage';
 
 interface MemoryProps {
   memory: Prisma.MemoryGetPayload<{
@@ -30,7 +27,7 @@ const Memory = ({ memory }: MemoryProps) => {
     <div
       className="py-16 px-16 flex flex-col items-center gap-16"
       style={{
-        height: "100dvh",
+        height: '100dvh',
         backgroundColor: backgroundColor,
         color: textColor,
       }}

@@ -1,13 +1,11 @@
-"use client";
-import React, { useEffect } from "react";
-import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
-import { MoveDown } from "lucide-react";
-import { Prisma } from "@prisma/client";
-import { useMouseWheel } from "./MouseWheelContext";
+'use client';
+import { Prisma } from '@prisma/client';
+import { GoogleMap, useLoadScript } from '@react-google-maps/api';
+import { MoveDown } from 'lucide-react';
 
 const containerStyle = {
-  width: "100%",
-  height: "100%",
+  width: '100%',
+  height: '100%',
 };
 
 interface MapProps {
@@ -17,24 +15,13 @@ interface MapProps {
 const Map = ({ memories }: MapProps) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY!,
-    libraries: ["places"],
+    libraries: ['places'],
   });
   const center = {
     lat: 33.520008,
     lng: 10.404954,
   };
   const zoom = 3.4;
-
-  const { disableMouseWheel, enableMouseWheel, allowMouseWheel } =
-    useMouseWheel();
-
-  const handleMouseEnter = () => {
-    disableMouseWheel();
-  };
-
-  const handleMouseLeave = () => {
-    enableMouseWheel();
-  };
 
   if (!isLoaded) return <div>Loading...</div>;
 
@@ -46,13 +33,8 @@ const Map = ({ memories }: MapProps) => {
         <div className="ml-auto">
           <MoveDown />
         </div>
-        <pre>{JSON.stringify(allowMouseWheel)}</pre>
       </div>
-      <div
-        className="grow w-full rounded-3xl overflow-hidden shadow-2xl"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+      <div className="grow w-full rounded-3xl overflow-hidden shadow-2xl">
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
