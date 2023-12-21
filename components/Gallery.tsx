@@ -30,14 +30,12 @@ const Gallery = ({ images }: GalleryProps) => {
       keyboard={true}
       style={{
         height: '100%',
+        width: '100%',
       }}
       centeredSlides={true}
     >
-      {images.map((image) => (
-        <SwiperSlide
-          style={{ width: isMobile ? '100%' : 'auto' }}
-          key={JSON.stringify(image)}
-        >
+      {images.map((image, index) => (
+        <SwiperSlide style={{ width: 'auto' }} key={index}>
           {({ isActive }) => (
             // <div
             //   className={cn(
@@ -49,11 +47,13 @@ const Gallery = ({ images }: GalleryProps) => {
               src={image}
               alt=""
               className={cn(
-                'h-full w-full object-contain opacity-30 scale-90 transition duration-300 rounded-3xl overflow-hidden',
+                'w-full h-full rounded-3xl overflow-hidden scale-90 opacity-30 transition duration-300',
                 isActive && 'opacity-100 scale-100'
               )}
               style={{
                 objectFit: 'contain',
+                maxWidth: '100%',
+                maxHeight: '100%',
               }}
             />
             // </div>
